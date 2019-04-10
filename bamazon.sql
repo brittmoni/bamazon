@@ -13,5 +13,18 @@ CREATE TABLE products(
 
 SELECT * FROM products;
 
+DELETE FROM products WHERE item_id = 1;
+
 INSERT INTO products(product_name, department_name, price, stock_quantity)
-VALUES('Coffee maker', 'Housewares', 75, 25);
+VALUES('Coffee maker', 'Housewares', 75, 25),
+('Vaccuum cleaner', 'Housewares', 125, 50),
+('Beats Headphones', 'Electronics', 200, 100),
+('Michael Kors handbag', 'Women\'s Fashion', 100, 20),
+('Portable charger', 'Electronics', 15, 200),
+('Microfiber blanket', 'Furnishings', 30, 500),
+('45 inch TV', 'Electronics', 300, 125),
+('Bookbag', 'School Supplies', 15, 350),
+('Mattress set', 'Housing', 250, 400),
+('6 Pack of Socks', 'Accessories', 10, 357);
+
+
