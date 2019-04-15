@@ -14,13 +14,6 @@ connection.connect(function(err) {
   items();
 });
 
-var itemSelected;
-var sql = `UPDATE products 
-          SET stock_quantity = ? 
-          WHERE item_id = ?`;
-
-var data;
-
 function items() {
   connection.query('SELECT * FROM products', function(err, res){
     if (err) throw err;
@@ -36,18 +29,7 @@ function items() {
           type: 'input',
           name: 'product_ID',
           message: 'What is the ID of the product that you would like to purchase?'
-        }
-      ])
-      .then(function(answer) {
-        itemSelected = answer.product_ID;
-        purchaseAmount();
-      });
-    });
-  }
-
-  function purchaseAmount() {
-    inquirer
-      .prompt([
+        },
         {
           type: 'input',
           name: 'items',
@@ -55,9 +37,35 @@ function items() {
         }
       ])
       .then(function(answer) {
-        connection.query(sql, data, itemSelected)
+        connection.query(`UPDATE products SET stock_quantity = ${res[answer.product_ID].stock_quantity} - ${answer.items} WHERE item_id = ${answer.product_ID}`, function(err) {
+          if (err) throw err;
 
+          if (res[answer.product_ID].stock_quantity > 0) {
+            console.log('Order placed');
+          } else {
+            console.log('Sorry, we are out of that product');
+          }
+        })
+        
       });
+    });
   }
+
+  // function purchaseAmount() {
+  //   inquirer
+  //     .prompt([
+  //       {
+  //         type: 'input',
+  //         name: 'items',
+  //         message: 'How many of this item would you like to purchase?'
+  //       }
+  //     ])
+  //     .then(function(answer) {
+  //       connection.query('UPDATE products SET stock_quantity =', res.items, 'WHERE item_id =', itemSelected, function(err, res){
+  //         console.log;
+  //       })
+
+  //     });
+  // }
 
 // connection.end();
