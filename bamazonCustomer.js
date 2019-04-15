@@ -29,32 +29,32 @@ function items() {
       .prompt([
         {
           type: 'input',
-          name: 'product-ID',
+          name: 'product_ID',
           message: 'What is the ID of the product that you would like to purchase?'
         }
       ])
       .then(function(answer) {
-        itemSelected = answer.product-ID;
+        itemSelected = answer.product_ID;
         purchaseAmount();
       });
     });
   }
 
-  function purchaseAmount() {
-    inquirer
-      .prompt([
-        {
-          type: 'input',
-          name: 'items',
-          message: 'How many of this item would you like to purchase?'
-        }
-      ])
-      .then(function(answer) {
-        connection.query('UPDATE products SET stock_quantity=stock_quantity -', answer.items, 'WHERE item_id = ', itemSelected) {
-          if 
-        }
+  // function purchaseAmount() {
+  //   inquirer
+  //     .prompt([
+  //       {
+  //         type: 'input',
+  //         name: 'items',
+  //         message: 'How many of this item would you like to purchase?'
+  //       }
+  //     ])
+  //     .then(function(answer) {
+  //       connection.query('UPDATE products SET stock_quantity=stock_quantity -', answer.items, 'WHERE item_id = ', itemSelected) {
+  //         if 
+  //       }
 
-      })
-  }
+  //     })
+  // }
 
 // connection.end();
