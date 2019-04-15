@@ -15,6 +15,11 @@ connection.connect(function(err) {
 });
 
 var itemSelected;
+var sql = `UPDATE products 
+          SET stock_quantity = ? 
+          WHERE item_id = ?`;
+
+var data;
 
 function items() {
   connection.query('SELECT * FROM products', function(err, res){
@@ -40,21 +45,19 @@ function items() {
     });
   }
 
-  // function purchaseAmount() {
-  //   inquirer
-  //     .prompt([
-  //       {
-  //         type: 'input',
-  //         name: 'items',
-  //         message: 'How many of this item would you like to purchase?'
-  //       }
-  //     ])
-  //     .then(function(answer) {
-  //       connection.query('UPDATE products SET stock_quantity=stock_quantity -', answer.items, 'WHERE item_id = ', itemSelected) {
-  //         if 
-  //       }
+  function purchaseAmount() {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'items',
+          message: 'How many of this item would you like to purchase?'
+        }
+      ])
+      .then(function(answer) {
+        connection.query(sql, data, itemSelected)
 
-  //     })
-  // }
+      });
+  }
 
 // connection.end();
