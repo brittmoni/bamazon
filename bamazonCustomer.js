@@ -11,12 +11,31 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
   if (err) throw err;
-  items();
+  // items();
 });
 
-function items() {
-  inquirer
-    .prompt({
-      
-    })
-}
+// function items() {
+//   inquirer
+//     .prompt({
+
+//     })
+// }
+
+connection.query('SELECT * FROM products', function(err, res){
+  if (err) throw err;
+
+  inquirer  
+    .prompt([
+      {
+        name: 'item',
+        type: 'rawlist',
+        choices: function() {
+          var itemsArr = [];
+          for (var i = 0; i < res.length; i++) {
+            itemsArr.push(res[i].product_name);
+          }
+          return itemsArr;
+        }
+      }
+    ])
+})
