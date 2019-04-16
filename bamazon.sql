@@ -27,4 +27,18 @@ VALUES('Coffee maker', 'Housewares', 75, 25),
 ('Mattress set', 'Housing', 250, 400),
 ('6 Pack of Socks', 'Accessories', 10, 357);
 
+UPDATE products
+SET stock_quantity = 25
+WHERE item_id = 2;
 
+UPDATE products
+SET stock_quantity = 100
+WHERE item_id = 4;
+
+UPDATE products
+SET stock_quantity = 500
+WHERE item_id = 7;
+
+UPDATE products
+SET stock_quantity = 125
+WHERE item_id = 8;
